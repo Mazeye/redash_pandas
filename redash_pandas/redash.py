@@ -94,7 +94,7 @@ class Redash:
         timeout = timeout or self.default_timeout
         query_timeout = query_timeout or self.default_query_timeout
         params = params or {}
-        self.req = self._build_query_uri(query_id, params)
+        self.req = self._build_query_uri(query_id)
 
         post_data: dict = {
             "parameters": {str(key): str(value) for key, value in params.items()},
@@ -356,14 +356,9 @@ class Redash:
         final_df = pd.concat(dfs, axis=0, ignore_index=True)
         return final_df
 
-    def _build_query_uri(self, query_id: int | str, params: Optional[dict] = None) -> str:
+    def _build_query_uri(self, query_id: int | str) -> str:
         """Builds query request URI."""
-        params = params or {}
         uri = f"{self.endpoint}/api/queries/{query_id}/results?api_key={self.apikey}"
-
-        for key, value in params.items():
-            uri += f"&p_{key}={value}"
-
         return uri
 
     def __del__(self) -> None:

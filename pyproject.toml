@@ -4,7 +4,7 @@ version = "0.1.5"
 description = "A simple wrapper class for easy querying of data from Redash."
 authors = [{ name = "Alex Ishida", email = "alex.weber.k@gmail.com" }]
 readme = "README.md"
-requires-python = ">= 3.12"
+requires-python = ">= 3.11"
 dependencies = [
     "httpx>=0.28.1",
     "pandas>=2.3.0",
